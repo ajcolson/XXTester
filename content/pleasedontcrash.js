@@ -1,11 +1,10 @@
 document.addEventListener("DOMContentLoaded", function(event) {
-  console.warn("Something wicked this way comes...");
-  var req = new Request('http://localhost:8080/echo', {method: 'POST', body: '{XSS}'});
+  console.warn("Something wicked this way comes...")
+  var req = new Request('http://localhost:8080/echo', {method: 'POST', body: '{XSS}'})
 
   fetch(req).then(function(resp) {
     if(resp.status == 200){
-      var _txt = resp.text()
-      _txt.then(function(text){
+      resp.text().then(function(text){
         textPayload(text)
         attr(text)
         evalPayload(text)
